@@ -1,0 +1,21 @@
+name: Automatisation des tests
+on: push
+jobs:
+  Compilation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Installation des dépendances
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake build-essential
+
+      - name: Compilation et tests
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+          make
+          make test
